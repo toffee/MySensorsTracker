@@ -20,10 +20,12 @@
 # in the author's setup, the topic is 'my/N/stat/...' where N is number of the gateway
 
 import configparser
-config = configparser.SafeConfigParser()
+import sys
+
+config = configparser.ConfigParser()
 try:
-    config.read(default.ini)
-    config.read(config.ini)
+    config.read("default.ini")
+    config.read("config.ini")
 except Exception as err:
     print("Error: " + str(err))
     sys.exit(1)
