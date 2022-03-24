@@ -21,6 +21,7 @@
 
 import configparser
 import sys,os
+import math
 
 config = configparser.ConfigParser()
 try:
@@ -845,7 +846,7 @@ def my_processor():
             int: number of days in the past
         """
         if dt is not None:
-            return floor((dt.now()-dt).total_seconds()/(60*60*24))
+            return math.floor((dt.now()-dt).total_seconds()/(60*60*24))
         else:
             return None
 
@@ -857,7 +858,7 @@ def my_processor():
             int: number of months in the past
         """
         if dt is not None:
-            return round( (datetime.today().date() - dt).total_seconds() / (60*60*24*30) )
+            return math.round( (datetime.today().date() - dt).total_seconds() / (60*60*24*30) )
         else:
             return None
 
