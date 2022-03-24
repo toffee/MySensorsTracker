@@ -102,6 +102,7 @@ DATABASE_FILE = config.get("db", "file")        #'mysensors.db'
 APP_DIR = config.get("db", "dir")               #os.path.dirname(os.path.realpath(__file__))
 DATABASE_URI = 'sqlite:///%s' % os.path.join(APP_DIR, DATABASE_FILE)
 
+#https://wlog.viltstigen.se/articles/2021/09/13/flask-application-behind-a-reverse-proxy/
 class ReverseProxied(object):
     def __init__(self, app, script_name):
         self.app = app
