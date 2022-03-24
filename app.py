@@ -102,7 +102,18 @@ DATABASE_FILE = config.get("db", "file")        #'mysensors.db'
 APP_DIR = config.get("db", "dir")               #os.path.dirname(os.path.realpath(__file__))
 DATABASE_URI = 'sqlite:///%s' % os.path.join(APP_DIR, DATABASE_FILE)
 
+class ReverseProxied(object):
+    def __init__(self, app, script_name):
+        self.app = app
+        self.script_name = script_name
+
+    def __call__(self, environ, start_response):
+        environ['SCRIPT_NAME'] = self.script_name
+        return self.app(environ, start_response)
+
+
 app = Flask(__name__)
+app.wsgi_app = ReverseProxied(app.wsgi_app, script_name=config.get("app", "path"))
 app.config['FLASK_ENV'] = 'development'
 app.config['DEBUG'] = True
 app.config['TESTING'] = True
