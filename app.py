@@ -19,8 +19,8 @@
 # adjust these constants to your environment
 # in the author's setup, the topic is 'my/N/stat/...' where N is number of the gateway
 
-import ConfigParser
-config = ConfigParser.SafeConfigParser()
+import configparser
+config = configparser.SafeConfigParser()
 try:
     config.read(default.ini)
     config.read(config.ini)
@@ -32,10 +32,6 @@ except Exception as err:
 MQTT_BROKER = config.get('mqtt', 'host')                # the name of your MQTT broker
 MQTT_TOPIC = config.get('mqtt', 'topic')                # the topic to subscribe to, includes wildcards
 MQTT_PATTERN = config.get('mqtt', 'pattern')            # regular expression to extract the interesting part of topic
-
-print MQTT_BROKER
-print MQTT_TOPIC
-print MQTT_PATTERN
 
 import sys,re,time,os
 import logging
