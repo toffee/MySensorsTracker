@@ -600,6 +600,12 @@ def index():
 
 ##----------------------------------------------------------------------------
 
+@app.route('/home')
+def home():
+    return render_template('index.html')
+
+##----------------------------------------------------------------------------
+
 @app.route('/nodes')
 def nodes():
     sort = flask.request.args.get('sort', default="nid", type=str)
