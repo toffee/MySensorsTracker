@@ -85,7 +85,7 @@ def init_logging():
                 'handlers': ['wsgi','console']
             },
             'app': {
-                'level': logging.DEBUG,
+                'level': logging.WARNING,
                 'handlers': ['console'],
             },
         },
@@ -116,7 +116,7 @@ class ReverseProxied(object):
 app = Flask(__name__)
 app.wsgi_app = ReverseProxied(app.wsgi_app, script_name=config.get("app", "path"))
 app.config['FLASK_ENV'] = 'development'
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 app.config['TESTING'] = True
 
 ##############################################################################
