@@ -75,7 +75,7 @@ def init_logging():
             },
             'console': {
                 'class': 'logging.StreamHandler',
-                'stream': 'ext://sys.stderr',
+                'stream': 'ext://sys.stdout',
                 'formatter': 'default',
             },
         },
@@ -89,7 +89,7 @@ def init_logging():
                 'handlers': ['console'],
             },
         },
-        'disable_existing_loggers': False,
+        'disable_existing_loggers': True,
     })
 
     return logging.getLogger('app')
