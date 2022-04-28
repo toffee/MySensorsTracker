@@ -876,7 +876,7 @@ def my_processor():
             int: number of months in the past
         """
         if dt is not None:
-            return math.round( (datetime.today().date() - dt).total_seconds() / (60*60*24*30) )
+            return round( (datetime.today().date() - dt).total_seconds() / (60*60*24*30) )
         else:
             return None
 
