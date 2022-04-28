@@ -48,6 +48,7 @@ from playhouse.flask_utils import FlaskDB
 from playhouse.flask_utils import object_list
 from playhouse.hybrid import hybrid_property
 import wtforms as wtf                   # BSD license
+import math
 
 import mysensors
 
@@ -863,7 +864,7 @@ def my_processor():
             int: number of days in the past
         """
         if dt is not None:
-            return floor((dt.now()-dt).total_seconds()/(60*60*24))
+            return math.floor((dt.now()-dt).total_seconds()/(60*60*24))
         else:
             return None
 
@@ -875,7 +876,7 @@ def my_processor():
             int: number of months in the past
         """
         if dt is not None:
-            return round( (datetime.today().date() - dt).total_seconds() / (60*60*24*30) )
+            return math.round( (datetime.today().date() - dt).total_seconds() / (60*60*24*30) )
         else:
             return None
 
