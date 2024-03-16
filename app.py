@@ -1073,12 +1073,12 @@ class BatteriesForm(wtf.Form):
 #endregion
 #############################################################################
 
-def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, flags, reason_code, properties):
     applog.info("MQTT: connected with result code "+str(rc))
-    if rc==0:
+    if reason_code==0:
         client.subscribe(MQTT_TOPIC)
 
-def on_disconnect(client, userdata,  rc):
+def on_disconnect(client, userdata, flags, reason_code, properties):
     applog.info("MQTT: disconnected")
 
 
@@ -1093,7 +1093,7 @@ def main():
         fill_tvalues()
 
     #mqttc = mqtt.Client( client_id="mytracker" )
-    mqttc = mqtt.Client()
+    mqttc = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
     #mqttc.enable_logger(applog)
     mqttc.on_message = on_message
     mqttc.on_connect = on_connect
